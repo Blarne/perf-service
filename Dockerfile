@@ -10,5 +10,5 @@ RUN mvn install
 FROM openjdk:8-jre-alpine
 WORKDIR /app
 COPY --from=build /app/target/perf-service-1.0.0-SNAPSHOT.jar /app
-EXPOSE 8080
+EXPOSE 2201
 CMD ["java -jar perf-service-1.0.0-SNAPSHOT.jar"]
