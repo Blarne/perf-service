@@ -1,7 +1,7 @@
 version: '2'
 
 volumes:
-  postgres_data:
+  postgres-db-data:
       driver: local
 #         name: perf-postgres-db-data
 
@@ -10,7 +10,7 @@ services:
       container_name: perf-postgres
       image: postgres:11-alpine
       volumes:
-        - postgres_data:/var/lib/postgresql/data
+        - postgres-db-data:/var/lib/postgresql/data
       environment:
         POSTGRES_DB: perf
         POSTGRES_USER: perf
