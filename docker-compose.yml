@@ -1,0 +1,37 @@
+version: '2'
+
+volumes:
+  postgres_data:
+#    driver: local
+      external:
+         name: perf-postgres-db-data
+
+services:
+  perf-postgres:
+      container_name: perf-postgres
+      image: postgres:11-alpine
+      volumes:
+        - postgres_data:/var/lib/postgresql/data
+      environment:
+        POSTGRES_DB: perf
+        POSTGRES_USER: perf
+        POSTGRES_PASSWORD: perfTest123
+      restart: always
+      ports:
+        - 5632:5432
+  perf1:
+      container_name: perf-microservice
+      image: karumien/perf-service:latest
+      environment:
+        DB_VENDOR: POSTGRES
+        DB_ADDR: perf-postgres
+        DB_DATABASE: perf
+        DB_USER: perf
+        DB_SCHEMA: public
+        DB_PORT: 5432
+        DB_PASSWORD: perfTest123
+      ports:
+        - 2201:2201
+      restart: always
+      depends_on:
+        - perf-postgres
