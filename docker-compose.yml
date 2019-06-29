@@ -1,8 +1,7 @@
-version: '2'
+version: '3'
 
 volumes:
   postgres_data:
-#    driver: local
       external:
          name: perf-postgres-db-data
 
