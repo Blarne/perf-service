@@ -12,4 +12,4 @@ WORKDIR /app
 COPY --from=build /app/target/perf-service-1.0.0-SNAPSHOT.jar /app
 EXPOSE 2201
 ENTRYPOINT ["sh", "-c"]
-CMD ["java -jar perf-service-1.0.0-SNAPSHOT.jar"]
+CMD ["java -Dspring.profiles.include=prod -jar perf-service-1.0.0-SNAPSHOT.jar"]
